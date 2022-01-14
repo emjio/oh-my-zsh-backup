@@ -1,14 +1,18 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/xiaobaicai/.oh-my-zsh"
+export ZSH="/root/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="ys"
+ZSH_THEME="random"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -127,10 +131,17 @@ source $ZSH/oh-my-zsh.sh
 ## 安装 zsh-autosuggestions 不同发行版安装位置不同修改路径
 # source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 ## 修改提示字符颜色
-# ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=cyan"
+HTTPIP=$(cat /etc/resolv.conf | grep "nameserver" | cut -f 2 -d " ")
+PROXY_HTTP="http://$HTTPIP:1080"
+
+export https_proxy="$PROXY_HTTP"
+export http_proxy="$PROXY_HTTP"## ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=cyan"
 export PATH=$HOME/bin:/usr/local/bin:$PATH
-eval $(thefuck --alias)
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-alias cat="bat"
-alias cpw="pwd | clip.exe"
 export PATH=$HOME/.local/bin:$PATH
+eval $(thefuck --alias)
+alias explorer="explorer.exe"
+alias gose='googleSearch() {chrome "https://www.google.com.hk/search?q="$1""};googleSearch'
+alias cpw="pwd | clip.exe"
+alias gise='githubSearch() {chrome "https://www.github.com/search?q="$1""};githubSearch'
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
